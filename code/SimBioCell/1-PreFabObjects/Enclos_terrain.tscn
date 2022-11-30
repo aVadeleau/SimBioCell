@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="enclos_terrain" type="Spatial"]
+
+[node name="Sol" type="StaticBody" parent="."]
+transform = Transform( 20, 0, 0, 0, 0.5, 0, 0, 0, 20, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Sol"]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Sol"]
+shape = SubResource( 2 )
+
+[node name="Mur1" type="StaticBody" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 5, 0, 0, 0, 20, 20, 5, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Mur1"]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mur1"]
+shape = SubResource( 2 )
+
+[node name="Mur2" type="StaticBody" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 5, 0, 0, 0, 20, -20, 5, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Mur2"]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mur2"]
+shape = SubResource( 2 )
+
+[node name="Mur3" type="StaticBody" parent="."]
+transform = Transform( 20, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Mur3"]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mur3"]
+shape = SubResource( 2 )
+
+[node name="Mur4" type="StaticBody" parent="."]
+transform = Transform( 20, 0, 0, 0, 5, 0, 0, 0, 0.5, 0, 5, -20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Mur4"]
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Mur4"]
+shape = SubResource( 2 )

@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://SimBioCell/6-ExpertMode/Engine/Behaviours.gd" type="Script" id=1]
+[ext_resource path="res://SimBioCell/1-PreFabObjects/CurvedVein.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/BloodCell.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SimBioCell/4-PreFabBehaviors/CellMouvement.vs" type="Script" id=4]
+[ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=5]
+[ext_resource path="res://SimBioCell/3-Tools/Portal/Portail.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/Virus.tscn" type="PackedScene" id=7]
+[ext_resource path="res://SimBioCell/7-SceneExamples/BloodVessel/InfectionVirus.vs" type="Script" id=8]
+[ext_resource path="res://SimBioCell/7-SceneExamples/BloodVessel/CureVirus.vs" type="Script" id=9]
+[ext_resource path="res://SimBioCell/3-Tools/Spawner/Spawner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://SimBioCell/7-SceneExamples/BloodVessel/Fusion.vs" type="Script" id=11]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/Anticorps.tscn" type="PackedScene" id=12]
+
+[node name="BloodVessel" type="Spatial"]
+
+[node name="Agents" type="Node" parent="."]
+
+[node name="Virus" parent="Agents" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -76.3523, 0, 17.5146 )
+
+[node name="Anticorps" parent="Agents" instance=ExtResource( 12 )]
+
+[node name="Behaviours" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="CellMouvement" type="Node" parent="Behaviours"]
+script = ExtResource( 4 )
+
+[node name="InfectionVirus" type="Node" parent="Behaviours"]
+script = ExtResource( 8 )
+
+[node name="CureVirus" type="Node" parent="Behaviours"]
+script = ExtResource( 9 )
+
+[node name="Fusion" type="Node" parent="Behaviours"]
+script = ExtResource( 11 )
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="CurvedVein" parent="Objects" instance=ExtResource( 2 )]
+transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
+
+[node name="Portal" type="Node" parent="Objects"]
+
+[node name="Portal1" parent="Objects/Portal" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 50, 0, 0, 0, 50, 91.0116, 0, 0 )
+other_portal = NodePath("../Portal2")
+
+[node name="Portal2" parent="Objects/Portal" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 50, 0, 0, 0, 50, -88.9964, 0, 0 )
+other_portal = NodePath("../Portal1")
+entry = false
+
+[node name="Spawner" type="Node" parent="Objects"]
+
+[node name="Spawner" parent="Objects/Spawner" instance=ExtResource( 10 )]
+zone_size = Vector3( 150, 25, 40 )
+source_object = ExtResource( 3 )
+spawned_parent = NodePath("../../../Agents")
+instances_to_spawn = 50
+random_rotation = true
+interval_seconds = -1.0
+shortcut = "Space"
+
+[node name="TrackballCamera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 89.949 )
+far = 8192.0
+script = ExtResource( 5 )

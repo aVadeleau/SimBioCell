@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://SimBioCell/3-Tools/Spawner/Spawner.gd" type="Script" id=1]
+[ext_resource path="res://SimBioCell/5-Materials/Transluecent.tres" type="Material" id=2]
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 2 )
+size = Vector3( 1, 1, 1 )
+
+[node name="Spawner" type="Spatial"]
+script = ExtResource( 1 )
+interval_seconds = 1
+
+[node name="Point" type="Position3D" parent="."]
+pause_mode = 1
+visible = false
+
+[node name="Zone" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )

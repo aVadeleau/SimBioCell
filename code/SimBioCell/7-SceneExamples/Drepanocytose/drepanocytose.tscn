@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=1]
+[ext_resource path="res://SimBioCell/6-ExpertMode/Engine/Behaviours.gd" type="Script" id=2]
+[ext_resource path="res://SimBioCell/7-SceneExamples/Drepanocytose/Falciforme.vs" type="Script" id=3]
+[ext_resource path="res://SimBioCell/7-SceneExamples/Drepanocytose/Infection.vs" type="Script" id=4]
+[ext_resource path="res://SimBioCell/7-SceneExamples/Drepanocytose/NoMoreFalciforme.vs" type="Script" id=5]
+[ext_resource path="res://SimBioCell/7-SceneExamples/Drepanocytose/LifeTime.vs" type="Script" id=6]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/BloodCell.tscn" type="PackedScene" id=7]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/Oxygen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/Virus.tscn" type="PackedScene" id=9]
+[ext_resource path="res://SimBioCell/1-PreFabObjects/CurvedVein.tscn" type="PackedScene" id=10]
+[ext_resource path="res://SimBioCell/3-Tools/Portal/Portail.tscn" type="PackedScene" id=11]
+[ext_resource path="res://SimBioCell/3-Tools/Spawner/Spawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://SimBioCell/4-PreFabBehaviors/CellMouvement.vs" type="Script" id=13]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Agents" type="Node" parent="."]
+
+[node name="Behaviours" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Infection" type="Node" parent="Behaviours"]
+script = ExtResource( 4 )
+
+[node name="Falciforme" type="Node" parent="Behaviours"]
+script = ExtResource( 3 )
+
+[node name="CellMouvement" type="Node" parent="Behaviours"]
+script = ExtResource( 13 )
+
+[node name="LifeTime" type="Node" parent="Behaviours"]
+script = ExtResource( 6 )
+
+[node name="NoMoreFalciforme" type="Node" parent="Behaviours"]
+script = ExtResource( 5 )
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="CurvedVein" parent="Objects" instance=ExtResource( 10 )]
+transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
+
+[node name="portal" type="Node" parent="Objects"]
+
+[node name="Portal" parent="Objects/portal" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 50, 0, 0, 0, 50, 91, 0, 0 )
+other_portal = NodePath("../Portal2")
+
+[node name="Portal2" parent="Objects/portal" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 50, 0, 0, 0, 50, -91, 0, 0 )
+entry = false
+
+[node name="spawner" type="Node" parent="Objects"]
+
+[node name="SpawnerBloodCell" parent="Objects/spawner" instance=ExtResource( 12 )]
+zone_size = Vector3( 150, 25, 40 )
+source_object = ExtResource( 7 )
+spawned_parent = NodePath("../../../Agents")
+instances_to_spawn = 100
+random_rotation = true
+interval_seconds = -1.0
+shortcut = "Space"
+
+[node name="SpawnerOxygen" parent="Objects/spawner" instance=ExtResource( 12 )]
+zone_size = Vector3( 150, 25, 40 )
+source_object = ExtResource( 8 )
+spawned_parent = NodePath("../../../Agents")
+instances_to_spawn = 25
+random_rotation = true
+interval_seconds = -1.0
+shortcut = "Control"
+
+[node name="SpawnerVirus" parent="Objects/spawner" instance=ExtResource( 12 )]
+zone_size = Vector3( 150, 25, 40 )
+source_object = ExtResource( 9 )
+spawned_parent = NodePath("../../../Agents")
+instances_to_spawn = 5
+random_rotation = true
+random_scale = true
+scale_range = Vector2( 0.5, 5 )
+interval_seconds = -1.0
+shortcut = "Enter"
+
+[node name="TrackballCamera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 73.4404 )
+far = 500.0
+script = ExtResource( 1 )

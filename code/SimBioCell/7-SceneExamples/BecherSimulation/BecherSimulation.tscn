@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://SimBioCell/1-PreFabObjects/VerreAPied.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/MoleculeA.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/MoleculeB.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SimBioCell/2-PreFabAgents/Touilleur.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SimBioCell/6-ExpertMode/Engine/Behaviours.gd" type="Script" id=5]
+[ext_resource path="res://SimBioCell/7-SceneExamples/BecherSimulation/TouilleurRotation.vs" type="Script" id=6]
+[ext_resource path="res://addons/goutte.camera.trackball/trackball_camera.gd" type="Script" id=7]
+[ext_resource path="res://SimBioCell/7-SceneExamples/BecherSimulation/CollisionImpulse.vs" type="Script" id=8]
+[ext_resource path="res://SimBioCell/7-SceneExamples/BecherSimulation/ParticulesFusion.vs" type="Script" id=9]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1, -1, -1, 1, -1, -1, -1 )
+
+[node name="BecherSimulation" type="Spatial"]
+
+[node name="Agents" type="Node" parent="."]
+
+[node name="Touilleur" parent="Agents" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.583 )
+axis_lock_linear_y = true
+
+[node name="MoleculeB" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.8796, -8.15138 )
+
+[node name="MoleculeB2" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48534, 36.7297, 11.1219 )
+
+[node name="MoleculeB3" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28702, 53.4812, -5.75098 )
+
+[node name="MoleculeB4" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9152, 24.0967, 11.1219 )
+
+[node name="MoleculeB5" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48534, 33.6248, -15.7726 )
+
+[node name="MoleculeB6" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48534, 18.677, -5.47233 )
+
+[node name="MoleculeB7" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06324, 36.7297, -3.44431 )
+
+[node name="MoleculeB8" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48534, 51.6698, 3.13076 )
+
+[node name="MoleculeB9" parent="Agents" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0291557, 12.3678, -5.69931 )
+
+[node name="MoleculeA" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.03308, 26.9734, 9.99687 )
+
+[node name="MoleculeA2" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.2438, -10.2442 )
+
+[node name="MoleculeA3" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92444, 39.3366, 4.16783 )
+
+[node name="MoleculeA4" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17476, 37.381, -6.64702 )
+
+[node name="MoleculeA5" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.53216, 19.5209, 4.60027 )
+
+[node name="MoleculeA6" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.30077, 19.9141, 0 )
+
+[node name="MoleculeA7" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.3503, -15.0103 )
+
+[node name="MoleculeA8" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1091, 0, 0 )
+
+[node name="MoleculeA9" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.36378, 0 )
+
+[node name="MoleculeA10" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.40105, 1.85163, -3.91262 )
+
+[node name="MoleculeA11" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 10.7908, 6.6655 )
+
+[node name="MoleculeA12" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8815, 21.6741, 0 )
+
+[node name="MoleculeA13" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 23.5243, -9.14844 )
+
+[node name="MoleculeA14" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 33.0032, 12.1364 )
+
+[node name="MoleculeA15" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.02825, 0, -10.2874 )
+
+[node name="MoleculeA16" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 12.5763, -2.06592 )
+
+[node name="MoleculeA17" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 38.6098, -13.7838 )
+
+[node name="MoleculeA18" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 12.0139, 2.59424 )
+
+[node name="MoleculeA19" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 28.1516, 6.53165 )
+
+[node name="MoleculeA20" parent="Agents" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.61905, 51.0499, 0 )
+
+[node name="Behaviours" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="TouilleurRotation" type="Node" parent="Behaviours"]
+script = ExtResource( 6 )
+
+[node name="CollisionImpulse" type="Node" parent="Behaviours"]
+script = ExtResource( 8 )
+
+[node name="ParticulesFusion" type="Node" parent="Behaviours"]
+script = ExtResource( 9 )
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="VerreAPied" parent="Objects" instance=ExtResource( 1 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
+
+[node name="StaticBody" type="StaticBody" parent="Objects"]
+visible = false
+
+[node name="MeshInstance" type="MeshInstance" parent="Objects/StaticBody"]
+transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 61.4177, 0 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Objects/StaticBody"]
+transform = Transform( 30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 61.4177, 0 )
+shape = SubResource( 2 )
+
+[node name="TrackballCamera" type="Camera" parent="."]
+transform = Transform( -0.0435254, -0.598657, 0.799822, 0.0479753, 0.798405, 0.600207, -0.9979, 0.0644959, -0.00603014, 55.0124, 84.0847, 0 )
+far = 500.0
+script = ExtResource( 7 )
+stabilize_horizon = true
